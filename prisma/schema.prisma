@@ -10,8 +10,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Example {
-  id        String   @id @default(cuid())
+model Invoice {
+  id String @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  invoiceNumber Int
+  total Float
+  currency String @default("USD")
+  invoiceDate DateTime @default(now())
+  dueDate DateTime @default(now())
+  remittanceAddress String @default("UNKNOWN")
+
+  // 0 - Pending - 1 Approved
+  status Int @default(0)
+
+  // relational settings
+  vendor Vendor @relation(fields: [vendorId], references: [id])
+  vendorId String
 }
+
+model Vendor {
+  id String @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name String @unique
+  invoices Invoice[]
+}
+
