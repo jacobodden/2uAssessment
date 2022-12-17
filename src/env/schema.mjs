@@ -27,5 +27,5 @@ export const clientSchema = z.object({
  * @type {{ [k in keyof z.infer<typeof clientSchema>]: z.infer<typeof clientSchema>[k] | undefined }}
  */
 export const clientEnv = {
-  NEXT_PUBLIC_DATABASE_URL: "file:./2U.db",
+  NEXT_PUBLIC_DATABASE_URL: process.env.DATABASE_URL,
 };

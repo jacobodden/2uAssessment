@@ -15,19 +15,18 @@ model Invoice {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  invoiceNumber Int
+  invoice_number String @unique
   total Float
   currency String @default("USD")
-  invoiceDate DateTime @default(now())
-  dueDate DateTime @default(now())
-  remittanceAddress String @default("UNKNOWN")
+  invoice_date String
+  due_date String
+  remittance_address String @default("UNKNOWN")
 
-  // 0 - Pending - 1 Approved
-  status Int @default(0)
+  status String @default("pending")
 
   // relational settings
-  vendor Vendor @relation(fields: [vendorId], references: [id])
-  vendorId String
+  vendor Vendor @relation(fields: [vendor_name], references: [name])
+  vendor_name String
 }
 
 model Vendor {
