@@ -1,10 +1,13 @@
 # Setup Instructions
 
-There should be only a few commands you need to run
+There should be only a few commands you need to run.
 
 ```shell
 npm install
 ```
+
+You'll also need to setup a .env file in the root of this project (see
+.env.example for what that file needs to inculde).
 
 Install the node modules required for this project.
 
